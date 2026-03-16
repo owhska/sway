@@ -1,0 +1,59 @@
+{
+    "layer": "top",
+    "position": "botton",
+    "height": 28,
+    "spacing": 2,
+
+    "modules-left": ["sway/workspaces", "sway/taskbar"],
+    "modules-right": ["network","memory","pulseaudio", "bluetooth", "battery", "clock"],
+
+    "sway/workspaces": {
+        "format": "{name}"
+    },
+
+    "clock": {
+        "format": "TIME:{:%H:%M}",
+        "format-alt": "DATE:{:%d/%m/%Y %H:%M}"
+    },
+
+    "network": {
+        "format-wifi": "WIFI:{essid}:{signalStrength}%",
+        "format-ethernet": "ETHERNET",
+        "format-disconnected": "OFFLINE",
+        "on-click": "kitty -e nmtui"
+    },
+
+    "bluetooth": {
+        "format": "BT:{status}",
+        "format-disabled": "BT:OFF",
+        "format-connected": "BT:{device_alias}",
+        "on-click": "blueman-manager"
+    },
+
+    "pulseaudio": {
+        "format": "VOL:{volume}%",
+        "format-muted": "VOL:MUTED",
+        "scroll-step": 5
+    },
+
+    "battery": {
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "BAT:{capacity}%",
+    "format-charging": "BAT:⚡{capacity}%",
+    "format-plugged": "BAT::{capacity}%"
+    },
+
+    "memory": {
+    "format": "RAM:{used}/{total}",
+    },
+
+    "sway/taskbar": {
+    "format": "{icon}",
+    "icon-size": 16,
+    "tooltip": true
+    }
+
+}
