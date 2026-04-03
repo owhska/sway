@@ -6,10 +6,40 @@ set $left h
 set $down j
 set $up k
 set $right l
-#set $term foot
-set $term kitty
-set $menu fuzzel
-#set $menu rofi -show drun
+set $term foot
+#set $term kitty
+#set $menu fuzzel
+set $menu rofi -show drun
+
+#Wallpaper
+#output * bg /home/brunes/Pictures/wall4.png fill
+#output * bg /home/brunes/Pictures/wall2.webp fill
+#output * bg /home/brunes/Pictures/wall5_saturated.jpg fill
+#output * bg /home/brunes/Pictures/wall7.jpg fill
+#output * bg /home/brunes/Pictures/wall0.jpg fill 
+output * bg /home/brunes/Pictures/wallBingo.png fill
+
+# --- colours ---
+set $colour1 #141c21
+set $colour2 #93a1a1
+set $colour3 #808080
+set $alpha   ff
+
+# --- statusbar ---
+#bar {
+#    position top
+#    font $font
+#
+#    status_command while sh $HOME/.config/sway/statusbar.sh; do sleep 1; done
+#
+#    colors {
+#        statusline $colour2
+#        background $colour1$alpha
+#        #                     border        background     text
+#        focused_workspace  $colour1$alpha $colour1$alpha $colour2
+#        inactive_workspace $colour1$alpha $colour1$alpha $colour3
+#    }
+#}
 
 seat seat0 xcursor_theme Adwaita 24
 # Core services
@@ -23,8 +53,8 @@ exec_always waybar
 exec nm-applet --indicator
 exec blueman-applet
 # Gaps & borders
-gaps inner 0
-gaps outer 0
+gaps inner 5
+gaps outer 5
 default_border pixel 2
 default_floating_border pixel 2
 
@@ -34,6 +64,10 @@ client.focused          #444444 #222222 #ffffff #444444 #444444
 client.unfocused        #222222 #111111 #888888 #222222 #222222
 client.focused_inactive #333333 #111111 #aaaaaa #333333 #333333
 client.urgent           #aa0000 #111111 #ffffff #aa0000 #aa0000
+
+#bar {
+#    status_command i3status -c ~/.config/i3status/config
+#}
 
 # Input
 input type:touchpad {
@@ -45,8 +79,8 @@ input type:touchpad {
 }
 
 input type:keyboard {
-	xkb_layout br
-	xkb_variant thinkpad
+	xkb_layout br,us
+	xkb_variant thinkpad,
 	
 }
 
@@ -59,11 +93,15 @@ input type:keyboard {
 bindsym $mod+Return exec $term
 bindsym Mod1+F4 exec ~/.local/bin/powermenu.sh
 #bindsym $mod+q kill
+bindsym $mod+Shift+g input type:keyboard xkb_switch_layout next
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+z exec systemctl suspend
+bindsym $mod+minus exec swaymsg output eDP-1 resolution 1920x1080@60Hz
+bindsym $mod+Shift+minus exec swaymsg output eDP-1 resolution 1280x720@60Hz
 #set $menu rofi -show drun -config ~/.config/rofi/apps.rasi
 bindsym $mod+d exec $menu
-bindsym $mod+space exec rofi -show drun
+#bindsym $mod+space exec rofi -show drun
+bindsym $mod+space exec ~/.config/rofi/search.sh
 bindsym $mod+tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+o exec sh -c 'pkill waybar; waybar &'
@@ -134,8 +172,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+space exec mpc toggle
 
 # Scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
+#bindsym $mod+Shift+minus move scratchpad
+#bindsym $mod+minus scratchpad show
 
 # Resize mode
 mode "resize" {
